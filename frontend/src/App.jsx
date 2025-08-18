@@ -27,6 +27,30 @@ function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
+useEffect(() => {
+  const handleKeyPress = (e) => {
+    if (e.key.toLowerCase() === "p") {
+      const audio = new Audio("/bg-music.mp3"); // put file in public folder
+      audio.play().catch((err) => console.log("Playback error:", err));
+
+      // Stop after 10 seconds
+      setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }, 50000);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyPress);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyPress);
+  };
+}, []);
+
+
+
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
