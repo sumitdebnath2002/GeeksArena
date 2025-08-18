@@ -16,7 +16,11 @@ const postRouter = require("./routes/postRoutes");
 
 app.use(
   cors({
-    origin: "https://geeksarena-one.vercel.app",
+    // origin: "https://geeksarena-one.vercel.app",
+      origin: [
+      "http://localhost:5173",   // local frontend
+      "https://geeksarena-one.vercel.app" // deployed frontend
+    ],
     credentials: true, // allow cookies/auth headers
   })
 );
